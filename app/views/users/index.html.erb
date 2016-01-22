@@ -1,0 +1,7 @@
+<% if @projects %>
+  <h3>Your Projects:</h3>
+  <% @projects.each do |p| %>
+    <%= link_to p.name, show_project_path(p) %>
+    <br>
+  <% end %>
+<% end %>

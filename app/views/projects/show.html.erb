@@ -1,0 +1,29 @@
+<% if @project %>
+
+  <h3>Hours today</h3>
+
+  <%= form_for @add_hours, url: url_for(:controller => 'projects', :action => 'add_hours') do |f| %>
+    <%= f.fields_for :hours do |h| %>
+      <%= h.hidden_field :project_id, :value => @project.id %>
+      <%= @project.name %> - 
+      <%= h.text_field :hours, value: @today || 0 %>
+      <%= h.text_field :note, placeholder: :note%>
+      <%= h.submit %>
+    <% end %>
+  <% end %>
+
+  <p><b>Hours Today:</b> <%= @today %></p>
+  <p><b>Hours This Week:</b> <%= @this_week %></p>
+  <p><b>Hours This Month:</b> <%= @this_month %></p>
+
+  <hr>
+  <h3>Hours Log</h3>
+  <% @all_hours.each do |h| %>
+    <b><span style="color:green"><%= h.hours%>h</span></b> - 
+    <b><%= h.note %></b> - 
+    <span style="color:gray"><%= h.created_at %></span> -
+
+    <br>
+  <% end %>
+
+<% end %>

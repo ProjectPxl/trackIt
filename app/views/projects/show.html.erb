@@ -6,7 +6,7 @@
     <%= f.fields_for :hours do |h| %>
       <%= h.hidden_field :project_id, :value => @project.id %>
       <%= @project.name %> - 
-      <%= h.text_field :hours, value: @today || 0 %>
+      <%= h.text_field :hours, value: 1 %>
       <%= h.text_field :note, placeholder: :note%>
       <%= h.submit %>
     <% end %>
@@ -25,5 +25,15 @@
 
     <br>
   <% end %>
+
+
+  <hr>
+  <h3>Hours for invoice</h3>
+  <% @map.each do |k,v| %>
+    <b><%=k%></b> - <%=v%>
+    <br>
+  <% end %>
+  <b>Total hours: </b> <%=@total%>
+  <b>Total $$$: </b> <%=@total*@rate%>
 
 <% end %>
